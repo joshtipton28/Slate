@@ -1,0 +1,1 @@
+export default { build: { lib: { entry:"packages/js/src/index.ts", name:"Slate", formats:["es","cjs","iife"] }, rollupOptions:{ output:{ entryFileNames: { es:"index.esm.js", cjs:"index.cjs", iife:"slate.min.js" }}}}}

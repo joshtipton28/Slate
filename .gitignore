@@ -7,3 +7,5 @@ coverage/
 
 !packages/core/dist/
 !packages/core/dist/**
+!packages/js/dist/
+!packages/js/dist/**
