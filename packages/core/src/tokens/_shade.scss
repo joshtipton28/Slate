@@ -1,0 +1,41 @@
+:root {
+  --sl-color-shade-0: #ffffff;
+  --sl-color-shade-100: #f5f5f5;
+  --sl-color-shade-200: #e0e0e0;
+  --sl-color-shade-300: #cccccc;
+  --sl-color-shade-400: #b3b3b3;
+  --sl-color-shade-500: #999999;
+  --sl-color-shade-600: #7f7f7f;
+  --sl-color-shade-700: #666666;
+  --sl-color-shade-800: #4d4d4d;
+  --sl-color-shade-900: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sl-color-shade-0: #000000;
+    --sl-color-shade-100: #1a1a1a;
+    --sl-color-shade-200: #333333;
+    --sl-color-shade-300: #4d4d4d;
+    --sl-color-shade-400: #666666;
+    --sl-color-shade-500: #808080;
+    --sl-color-shade-600: #999999;
+    --sl-color-shade-700: #b3b3b3;
+    --sl-color-shade-800: #cccccc;
+    --sl-color-shade-900: #e6e6e6;
+  }
+}
+
+[data-theme="dark"] {
+  --sl-color-shade-0: #000000;
+  --sl-color-shade-100: #1a1a1a;
+  --sl-color-shade-200: #333333;
+  --sl-color-shade-300: #4d4d4d;
+  --sl-color-shade-400: #666666;
+  --sl-color-shade-500: #808080;
+  --sl-color-shade-600: #999999;
+  --sl-color-shade-700: #b3b3b3;
+  --sl-color-shade-800: #cccccc;
+  --sl-color-shade-900: #e6e6e6;
+}
+
