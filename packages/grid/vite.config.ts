@@ -1,0 +1,1 @@
+export default { build:{ lib:{ entry:"packages/grid/src/index.scss", formats:["es"] }}}

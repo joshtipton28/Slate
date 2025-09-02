@@ -1,0 +1,9 @@
+@use "sass:meta";
+@mixin matrix($cols, $gap: 1rem, $flow: row, $inline: false){
+  display: if($inline, inline-grid, grid);
+  grid-template-columns: if(meta.type-of($cols) == number, repeat($cols, minmax(0,1fr)), $cols);
+  gap: $gap;
+  grid-auto-flow: $flow;
+}
+@mixin col-span($n){ grid-column: span $n; }
+@mixin row-span($n){ grid-row: span $n; }
