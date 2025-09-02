@@ -1,0 +1,1 @@
+export function initSwitchNav(root:HTMLElement){ const mq = window.matchMedia("(max-width: 48rem)"); root.dataset.mode = mq.matches ? "drawer" : "menu"; mq.addEventListener("change", () => { root.dataset.mode = mq.matches ? "drawer" : "menu"; }); }

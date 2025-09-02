@@ -1,0 +1,1 @@
+export function initStack(root:HTMLElement){ root.querySelectorAll<HTMLElement>(".stack__header button").forEach(btn=>{ btn.addEventListener("click",()=>{ const item = btn.closest(".stack__item"); const open = item?.hasAttribute("open"); item?.toggleAttribute("open", !open); btn.setAttribute("aria-expanded", String(!open)); }); }); }

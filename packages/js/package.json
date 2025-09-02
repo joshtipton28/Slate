@@ -1,1 +1,18 @@
-{ "name":"@slatecss/js", "version":"0.0.0", "type":"module" }
+{
+  "name": "@slatecss/js",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "module": "./dist/index.esm.js",
+  "main": "./dist/index.cjs",
+  "unpkg": "./dist/slate.min.js",
+  "files": [
+    "dist",
+    "src"
+  ]
+}
