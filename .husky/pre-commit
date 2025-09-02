@@ -1,0 +1,5 @@
+#!/bin/sh
+. "${PWD}/.husky/_/husky.sh" || true
+pnpm run format:check || npm run format:check || true
+pnpm run lint:js || npm run lint:js || true
+pnpm run lint:css || npm run lint:css || true

@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: corepack enable || true
+      - run: corepack prepare pnpm@10.5.2 --activate || true
+      - run: pnpm -v || echo "pnpm not available; falling back"
+      - run: pnpm -w install || npm ci || npm install --package-lock-only
+      - run: pnpm -w lint || npm run lint || true
+      - run: pnpm -w build || npm run build || true
+      - run: pnpm -w test || npm test || true

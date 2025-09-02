@@ -2,8 +2,13 @@
   "name": "slate",
   "private": true,
   "scripts": {
-    "lint": "echo \"(todo)\"",
-    "build": "echo \"(todo)\"",
-    "test": "echo \"(todo)\""
+    "lint": "echo lint && exit 0",
+    "build": "echo build && exit 0",
+    "test": "echo test && exit 0",
+    "ts:show": "tsc --showConfig",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"**/*.scss\""
   }
 }
