@@ -1,0 +1,26 @@
+@use "sass:map";
+// token maps (can import from core later)
+$space: ("0":0, "1":.25rem, "2":.5rem, "3":.75rem, "4":1rem) !default;
+
+@mixin spacing(){
+  @each $k,$v in $space {
+    .u-m-#{$k}{ margin: $v; }
+    .u-mx-#{$k}{ margin-left:$v; margin-right:$v; }
+    .u-my-#{$k}{ margin-top:$v; margin-bottom:$v; }
+    .u-p-#{$k}{ padding:$v; }
+    .u-px-#{$k}{ padding-left:$v; padding-right:$v; }
+    .u-py-#{$k}{ padding-top:$v; padding-bottom:$v; }
+  }
+}
+
+@mixin display(){
+  .u-block{display:block}.u-inline{display:inline}.u-inline-block{display:inline-block}.u-flex{display:flex}.u-grid{display:grid}
+}
+
+@mixin text(){
+  .u-text-left{text-align:left}.u-text-center{text-align:center}.u-text-right{text-align:right}
+}
+
+@mixin gridSpan($max:12){
+  @for $i from 1 through $max { .u-col-span-#{$i}{ grid-column: span #{$i}; } }
+}

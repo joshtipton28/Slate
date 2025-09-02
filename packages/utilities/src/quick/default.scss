@@ -1,0 +1,5 @@
+@use "./quick" as q;
+@include q.spacing();
+@include q.display();
+@include q.text();
+@include q.gridSpan(12);

@@ -1,0 +1,7 @@
+@forward "scope";@forward "steps";@forward "balance";
+@use "./config";
+@use "./quick" as q;
+@if config.$emit-spacing { @include q.spacing(); }
+@if config.$emit-display { @include q.display(); }
+@if config.$emit-text { @include q.text(); }
+@if config.$emit-grid-span { @include q.gridSpan(12); }
