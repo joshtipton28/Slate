@@ -1,0 +1,9 @@
+{
+  "name": "slate",
+  "private": true,
+  "scripts": {
+    "lint": "echo \"(todo)\"",
+    "build": "echo \"(todo)\"",
+    "test": "echo \"(todo)\""
+  }
+}
