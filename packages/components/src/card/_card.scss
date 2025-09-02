@@ -1,0 +1,4 @@
+.card{background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.card__header{padding:1rem;border-bottom:1px solid var(--color-border)}
+.card__body{padding:1rem}
+.card__footer{padding:1rem;border-top:1px solid var(--color-border)}

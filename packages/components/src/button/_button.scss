@@ -1,0 +1,6 @@
+.btn{--bg:var(--color-primary);--fg:#fff;background:var(--bg);color:var(--fg);border:1px solid color-mix(in oklab,var(--bg),black 10%);border-radius:var(--radius-md);padding:.625rem 1rem;box-shadow:var(--shadow-sm);transition:transform var(--dur-fast) var(--ease-standard),box-shadow var(--dur-fast) var(--ease-standard)}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn--ghost{background:color-mix(in oklab,var(--color-primary),white 90%);color:var(--color-primary)}
+.btn--outline{background:transparent;color:var(--color-primary);border:1px solid var(--color-primary)}
+.btn--sm{padding:.5rem .75rem}.btn--lg{padding:.75rem 1.25rem}

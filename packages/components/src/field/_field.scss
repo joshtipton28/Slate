@@ -1,0 +1,6 @@
+.field{margin-bottom:1rem}.field__label{display:block;margin-bottom:.375rem;font-weight:600}
+.field__input{width:100%;padding:.625rem .75rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text)}
+.field__input:focus{outline:2px solid var(--color-primary);outline-offset:2px}
+.field__help{color:color-mix(in oklab,var(--color-text),black 30%);font-size:.875rem;margin-top:.25rem}
+.field--error .field__input{border-color:var(--color-danger)}
+.field--error .field__help{color:var(--color-danger)}

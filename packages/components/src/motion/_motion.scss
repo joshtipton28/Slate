@@ -1,0 +1,7 @@
+.fx-fade-in{opacity:0;transition:opacity var(--dur-med) var(--ease-standard)}
+.fx-fade-in.is-in{opacity:1}
+.fx-slide-up{transform:translateY(8px);opacity:.01;transition:transform var(--dur-med) var(--ease-standard),opacity var(--dur-med) var(--ease-standard)}
+.fx-slide-up.is-in{transform:none;opacity:1}
+.fx-scale-in{transform:scale(.98);opacity:.01;transition:transform var(--dur-med) var(--ease-standard),opacity var(--dur-med) var(--ease-standard)}
+.fx-scale-in.is-in{transform:none;opacity:1}
+@media (prefers-reduced-motion:reduce){.fx-fade-in,.fx-slide-up,.fx-scale-in{transition:none}}

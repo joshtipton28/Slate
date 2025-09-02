@@ -1,0 +1,4 @@
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--color-surface);color:var(--color-text);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:1rem;min-width:22rem;max-width:90vw;display:none}
+.modal--sm{min-width:18rem}.modal--lg{min-width:32rem}
+.modal[open], .modal-overlay[open]{display:block}
