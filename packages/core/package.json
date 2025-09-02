@@ -4,6 +4,10 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "style": "dist/index.css",
+  "scripts": {
+    "build": "sass src/index.scss dist/index.css"
+  },
   "license": "MIT",
   "type": "module"
 }
