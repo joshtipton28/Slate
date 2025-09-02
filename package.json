@@ -1,0 +1,17 @@
+{
+  "name": "slate",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Slate front-end framework",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "sites/*"
+  ],
+  "scripts": {
+    "lint": "eslint . && stylelint \"**/*.scss\"",
+    "format": "prettier . --check",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "echo 'test not implemented'"
+  }
+}
