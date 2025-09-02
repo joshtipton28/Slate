@@ -1,0 +1,1 @@
+export default { build:{ lib:{ entry:"packages/components/src/index.scss", formats:["es"] }}}
