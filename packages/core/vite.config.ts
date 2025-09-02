@@ -1,0 +1,1 @@
+export default { build: { lib: { entry: "packages/core/src/index.scss", formats: ["es"] }}}
