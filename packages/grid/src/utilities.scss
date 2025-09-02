@@ -1,0 +1,2 @@
+.matrix--col { grid-auto-flow: column; }
+@for $i from 1 through 12 { .u-col-span-#{$i} { grid-column: span #{$i}; } }

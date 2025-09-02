@@ -1,0 +1,2 @@
+$gaps: ("0":0, "1":.25rem, "2":.5rem, "3":.75rem, "4":1rem) !default;
+@mixin gap($key){ gap: map-get($gaps, $key); }
