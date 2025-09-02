@@ -1,0 +1,25 @@
+:root {
+  --sl-color-bg: #ffffff;
+  --sl-color-text: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --sl-color-bg: #000000;
+    --sl-color-text: #ffffff;
+  }
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --sl-color-bg: #000000;
+  --sl-color-text: #ffffff;
+}
+
+$shade: (
+  'bg': #ffffff,
+  'text': #000000,
+  'dark-bg': #000000,
+  'dark-text': #ffffff,
+);
