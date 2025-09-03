@@ -1,3 +1,3 @@
-@import "../../../../packages/core/src/index.scss";
-@import "../../../../packages/components/src/index.scss";
+@import "@slatecss/core";
+@import "@slatecss/components";
 
