@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Shims">
+  <h1>Shims for Foundation → Slate</h1>
+  <p>Temporary CSS/JS helpers to ease migration. Remove after updating templates.</p>
+  <h2>Install</h2>
+  <pre><code>pnpm add -D @slatecss/shims</code></pre>
+  <h2>Use</h2>
+  <pre><code>@import "@slatecss/shims"; // CSS
+import "@slatecss/shims";     // JS</code></pre>
+  <h2>Removal checklist</h2>
+  <ul><li>Replace legacy selectors</li><li>Drop shims imports</li><li>Fix remaining console warnings</li></ul>
+</Base>
