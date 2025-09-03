@@ -13,7 +13,8 @@
     "test:a11y": "playwright test -c playwright.config.ts",
     "build:js": "pnpm -F @slatecss/js build || true",
     "size": "size-limit",
-    "verify:dist": "node scripts/verify-dists.mjs"
+    "verify:dist": "node scripts/verify-dists.mjs",
+    "smoke:shims": "node scripts/smoke-shims.mjs"
   },
   "devDependencies": {
     "size-limit": "^11.0.0"
