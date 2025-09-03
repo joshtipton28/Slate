@@ -17,6 +17,8 @@ jobs:
       - run: corepack prepare pnpm@10.5.2 --activate || true
       - run: pnpm -v || echo "pnpm unavailable; fallback to npm"
       - run: pnpm -w install || npm ci || npm install
+      - run: npm run build
+      - run: npm run verify:dist
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
