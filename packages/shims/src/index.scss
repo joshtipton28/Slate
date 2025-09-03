@@ -1,0 +1,8 @@
+/* Foundation → Slate aliases (subset) */
+.top-bar { @extend .tabs__list !optional; }
+.button { @extend .btn !optional; }
+.callout, .alert-box { @extend .notice !optional; }
+.reveal { @extend .modal !optional; }
+.accordion { @extend .stack !optional; }
+.tabs-content { @extend .tabs__panel !optional; }
+@for $i from 1 through 12 { .small-#{$i} { grid-column: span #{$i}; } }
