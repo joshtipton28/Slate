@@ -1,0 +1,14 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Modal">
+  <button class="btn" data-open-modal="demo-modal">Open modal</button>
+  <div class="modal-overlay"></div>
+  <div id="demo-modal" class="modal" role="dialog" aria-modal="true">
+    <header class="card__header">Modal</header>
+    <div class="card__body">Hello!</div>
+    <footer class="card__footer">
+      <button class="btn btn--ghost" data-close-modal>Close</button>
+    </footer>
+  </div>
+</Base>

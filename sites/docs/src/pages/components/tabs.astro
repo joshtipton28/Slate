@@ -1,0 +1,13 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Tabs">
+  <div class="tabs">
+    <div class="tabs__list">
+      <button class="tabs__tab" aria-selected="true">One</button>
+      <button class="tabs__tab" aria-selected="false">Two</button>
+    </div>
+    <section class="tabs__panel">Panel 1</section>
+    <section class="tabs__panel" hidden>Panel 2</section>
+  </div>
+</Base>
