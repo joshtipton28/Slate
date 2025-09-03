@@ -3,13 +3,18 @@
   "private": true,
   "scripts": {
     "lint": "echo lint && exit 0",
-    "build": "echo build && exit 0",
+    "build": "node scripts/build-all.mjs",
     "test": "echo test && exit 0",
     "ts:show": "tsc --showConfig",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint:js": "eslint .",
     "lint:css": "stylelint \"**/*.scss\"",
-    "test:a11y": "playwright test -c playwright.config.ts"
+    "test:a11y": "playwright test -c playwright.config.ts",
+    "build:js": "pnpm -F @slatecss/js build || true",
+    "size": "size-limit"
+  },
+  "devDependencies": {
+    "size-limit": "^11.0.0"
   }
 }
