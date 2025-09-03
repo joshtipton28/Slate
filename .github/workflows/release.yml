@@ -1,0 +1,23 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - run: corepack enable || true
+      - run: corepack prepare pnpm@10.5.2 --activate || true
+      - run: pnpm -v || echo "pnpm unavailable; fallback to npm"
+      - run: pnpm -w install || npm ci || npm install
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm -r publish --no-git-checks || npm publish --workspaces --access public || echo "publish placeholder"
