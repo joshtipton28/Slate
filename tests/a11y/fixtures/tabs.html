@@ -1,7 +1,17 @@
 <!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../packages/components/src/index.scss">
-<div class="tabs"><div class="tabs__list">
-  <button class="tabs__tab" aria-selected="true">One</button>
-  <button class="tabs__tab" aria-selected="false">Two</button>
+<div class="tabs">
+  <div class="tabs__list">
+    <button class="tabs__tab" aria-selected="true">One</button>
+    <button class="tabs__tab" aria-selected="false">Two</button>
+  </div>
+  <section class="tabs__panel">Tab 1</section>
+  <section class="tabs__panel" hidden>Tab 2</section>
+  <script>
+    const tabs=[...document.querySelectorAll('.tabs__tab')];
+    const panels=[...document.querySelectorAll('.tabs__panel')];
+    tabs.forEach((t,i)=>t.addEventListener('click',()=>{
+      tabs.forEach((tt,j)=>tt.setAttribute('aria-selected', String(i===j)));
+      panels.forEach((p,j)=>p.toggleAttribute('hidden', i!==j));
+    }));
+  </script>
 </div>
-<section class="tabs__panel">Tab 1</section>
-<section class="tabs__panel" hidden>Tab 2</section></div>

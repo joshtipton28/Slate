@@ -13,8 +13,8 @@ const { title = "Slate" } = Astro.props;
       });
     </script>
     <style is:global lang="scss">
-      @import "../../../packages/core/src/index.scss";
-      @import "../../../packages/components/src/index.scss";
+      @import "slate:core";
+      @import "slate:components";
       body {
         margin: 0;
         padding: 2rem;
