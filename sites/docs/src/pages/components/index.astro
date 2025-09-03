@@ -1,0 +1,21 @@
+---
+import Base from "../../layouts/Base.astro";
+const items = [
+  ["Buttons","/components/button"],
+  ["Notices","/components/notice"],
+  ["Cards","/components/card"],
+  ["Fields","/components/field"],
+  ["Tabs","/components/tabs"],
+  ["Stack (Accordion)","/components/stack"],
+  ["Modal","/components/modal"],
+  ["Tables","/components/tables"],
+  ["Utilities","/components/utilities"],
+  ["Grid (Matrix)","/components/grid"]
+];
+---
+<Base title="Components">
+  <h1>Components</h1>
+  <ul>
+    {items.map(([t,href]) => <li><a href={href}>{t}</a></li>)}
+  </ul>
+</Base>

@@ -1,0 +1,9 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Grid (Matrix)">
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1rem;">
+    <div class="card u-p-2" style="grid-column:span 3;">Span 3</div>
+    <div class="card u-p-2" style="grid-column:span 9;">Span 9</div>
+  </div>
+</Base>

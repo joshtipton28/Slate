@@ -1,0 +1,15 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Field">
+  <div class="field">
+    <label class="field__label" for="email">Email</label>
+    <input class="field__input" id="email" type="email" placeholder="you@example.com" />
+    <small class="field__help">We’ll never share your email.</small>
+  </div>
+  <div class="field field--error">
+    <label class="field__label" for="name">Name</label>
+    <input class="field__input" id="name" />
+    <small class="field__help">Name is required.</small>
+  </div>
+</Base>
