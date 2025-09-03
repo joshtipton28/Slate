@@ -1,3 +1,0 @@
-@import "../../../packages/core/src/index.scss";
-@import "../../../packages/components/src/index.scss";
-body{margin:0;padding:2rem;background:var(--color-bg);color:var(--color-text);font-family:system-ui,sans-serif}

@@ -5,7 +5,6 @@ const { title = "Slate" } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
-    <link rel="stylesheet" href="/styles/global.css" />
     <script type="module">
       import { initThemeToggle } from "/src/components/ThemeToggle.ts";
       window.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +12,17 @@ const { title = "Slate" } = Astro.props;
         if (btn) initThemeToggle(btn);
       });
     </script>
+    <style is:global lang="scss">
+      @import "../../../packages/core/src/index.scss";
+      @import "../../../packages/components/src/index.scss";
+      body {
+        margin: 0;
+        padding: 2rem;
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      }
+    </style>
   </head>
   <body>
     <header style="display:flex;justify-content:space-between;align-items:center;padding:1rem">
