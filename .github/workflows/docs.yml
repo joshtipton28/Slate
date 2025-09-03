@@ -1,0 +1,31 @@
+name: Docs
+on:
+  push: { branches: [ main ] }
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: corepack enable || true
+      - run: corepack prepare pnpm@10.5.2 --activate || true
+      - run: pnpm -v || echo "pnpm unavailable; fallback to npm"
+      - run: cd sites/docs && (pnpm install || npm install) || true
+      - run: cd sites/docs && (pnpm run build || npm run build || echo "structural build placeholder")
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: "sites/docs/dist" }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

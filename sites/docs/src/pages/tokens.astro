@@ -1,0 +1,24 @@
+---
+import Base from "../layouts/Base.astro";
+const tokens = [
+  ["--color-primary","#1c4566"],
+  ["--brand-slate-muted","#566590"],
+  ["--brand-echo-light","#b8d2ed"],
+  ["--brand-indigogray","#42436c"],
+  ["--brand-slate-dark","#323460"],
+  ["--brand-navy-midnight","#03284f"]
+];
+---
+<Base title="Tokens">
+  <h2>Token Editor</h2>
+  <p>Adjust Slate’s CSS variables below. Changes apply live via <code>document.documentElement.style.setProperty</code>.</p>
+  <ul style="padding:0">
+    {tokens.map(([name,val]) => (
+      <li style="list-style:none;margin:.5rem 0;display:flex;gap:.5rem;align-items:center">
+        <label style="width:18rem;display:inline-block">{name}</label>
+        <input type="color" value={val} on:input={(e) => document.documentElement.style.setProperty(name, e.target.value)} />
+        <input type="text" value={val} size="10" on:input={(e) => document.documentElement.style.setProperty(name, e.target.value)} />
+      </li>
+    ))}
+  </ul>
+</Base>

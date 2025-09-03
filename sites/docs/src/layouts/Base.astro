@@ -1,0 +1,26 @@
+---
+const { title = "Slate" } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <script type="module">
+      import { initThemeToggle } from "/src/components/ThemeToggle.ts";
+      window.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('#theme-toggle');
+        if (btn) initThemeToggle(btn);
+      });
+    </script>
+  </head>
+  <body>
+    <header style="display:flex;justify-content:space-between;align-items:center;padding:1rem">
+      <h1>Slate</h1>
+      <button id="theme-toggle" class="btn btn--ghost">Toggle theme</button>
+    </header>
+    <main style="padding:1rem">
+      <slot />
+    </main>
+  </body>
+</html>
