@@ -12,7 +12,8 @@
     "lint:css": "stylelint \"**/*.scss\"",
     "test:a11y": "playwright test -c playwright.config.ts",
     "build:js": "pnpm -F @slatecss/js build || true",
-    "size": "size-limit"
+    "size": "size-limit",
+    "verify:dist": "node scripts/verify-dists.mjs"
   },
   "devDependencies": {
     "size-limit": "^11.0.0"
