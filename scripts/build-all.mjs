@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const pkgs = [
+  { name:'@slatecss/shims', path:'packages/shims', type:'mixed', outputs:['index.css','index.js'] },
   { name:'@slatecss/core',       path:'packages/core',       type:'css', outputs:['index.css'] },
   { name:'@slatecss/grid',       path:'packages/grid',       type:'css', outputs:['index.css'] },
   { name:'@slatecss/utilities',  path:'packages/utilities',  type:'css', outputs:['index.css'] },
@@ -22,10 +23,11 @@ function hasScript(pkgPath, script) {
 function ensurePlaceholders(p) {
   const dist = join(p.path, 'dist');
   if (!existsSync(dist)) mkdirSync(dist, { recursive: true });
-  if (p.type === 'js') {
-    p.outputs.forEach(f => writeFileSync(join(dist, f), `/* placeholder ${p.name}:${f} */`));
-  } else {
-    p.outputs.forEach(f => writeFileSync(join(dist, f), `/* placeholder ${p.name}:${f} */`));
+  for (const f of p.outputs) {
+    const out = join(dist, f);
+    if (f.endsWith('.css')) writeFileSync(out, `/* placeholder ${p.name}:${f} */`);
+    else if (f.endsWith('.js')) writeFileSync(out, `/* placeholder ${p.name}:${f} */`);
+    else writeFileSync(out, `/* placeholder ${p.name}:${f} */`);
   }
   console.log(`(fallback) wrote placeholders for ${p.name}`);
 }

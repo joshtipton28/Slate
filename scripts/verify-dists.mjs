@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const pkgs = [
+  { name:'@slatecss/shims', path:'packages/shims', outputs:['index.css','index.js'] },
   { name:'@slatecss/core',       path:'packages/core',       outputs:['index.css'] },
   { name:'@slatecss/grid',       path:'packages/grid',       outputs:['index.css'] },
   { name:'@slatecss/utilities',  path:'packages/utilities',  outputs:['index.css'] },
