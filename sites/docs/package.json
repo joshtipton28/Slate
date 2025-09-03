@@ -1,1 +1,13 @@
-{ "name":"@slatecss/docs","private":true,"scripts":{"dev":"astro dev","build":"astro build"} }
+{
+  "name": "@slatecss/docs",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build"
+  },
+  "devDependencies": {
+    "astro": "^4.12.2",
+    "@astrojs/mdx": "^3.1.2",
+    "sass": "^1.77.0"
+  }
+}

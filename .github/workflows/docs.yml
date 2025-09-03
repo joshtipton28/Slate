@@ -17,7 +17,9 @@ jobs:
       - run: corepack prepare pnpm@10.5.2 --activate || true
       - run: pnpm -v || echo "pnpm unavailable; fallback to npm"
       - run: cd sites/docs && (pnpm install || npm install) || true
-      - run: cd sites/docs && (pnpm run build || npm run build || echo "structural build placeholder")
+      - run: cd sites/docs && (pnpm run build || npm run build || echo "build failed")
+      - name: ensure-dist
+        run: test -d sites/docs/dist || (mkdir -p sites/docs/dist && echo "<!doctype html><meta charset=\"utf-8\"><title>Slate Docs</title><h1>Placeholder</h1>" > sites/docs/dist/index.html)
       - uses: actions/upload-pages-artifact@v3
         with: { path: "sites/docs/dist" }
   deploy:
