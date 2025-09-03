@@ -1,0 +1,4 @@
+@import "../../packages/core/src/index.scss";
+@import "../../packages/components/src/index.scss";
+body{font-family:system-ui,sans-serif}
+

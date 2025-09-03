@@ -1,1 +1,14 @@
-{ "name":"@slatecss/cli", "version":"0.0.0", "type":"module" }
+{
+  "name": "@slatecss/cli",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "slate": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "templates",
+    "README.md",
+    "package.json"
+  ]
+}
