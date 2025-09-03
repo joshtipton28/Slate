@@ -1,26 +1,43 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const pkgs = [
-  { name:'@slatecss/shims', path:'packages/shims', outputs:['index.css','index.js'] },
-  { name:'@slatecss/core',       path:'packages/core',       outputs:['index.css'] },
+  { name:'@slatecss/core',       path:'packages/core',       outputs:['index.css','palette.css'], mustContainCss:[':root','--'] },
   { name:'@slatecss/grid',       path:'packages/grid',       outputs:['index.css'] },
   { name:'@slatecss/utilities',  path:'packages/utilities',  outputs:['index.css'] },
   { name:'@slatecss/components', path:'packages/components', outputs:['index.css'] },
-  { name:'@slatecss/js',         path:'packages/js',         outputs:['index.esm.js','index.cjs','slate.min.js'] }
+  { name:'@slatecss/js',         path:'packages/js',         outputs:['index.esm.js','index.cjs','slate.min.js'] },
+  { name:'@slatecss/shims',      path:'packages/shims',      outputs:['index.css','index.js'] },
 ];
+
+function isPlaceholder(buf){
+  const s = buf.toString('utf8').trim();
+  return s.startsWith('/* placeholder') || s.length < 40;
+}
 
 let ok = true;
 for (const p of pkgs) {
-  const missing = p.outputs.filter(f => !existsSync(join(p.path, 'dist', f)));
-  if (missing.length) {
-    ok = false;
-    console.error(`[verify-dists] ${p.name} missing: ${missing.join(', ')}`);
+  for (const f of p.outputs) {
+    const full = join(p.path, 'dist', f);
+    if (!existsSync(full)) {
+      console.error(`[verify-dists] ${p.name} missing ${f}`);
+      ok = false;
+      continue;
+    }
+    const buf = readFileSync(full);
+    if (isPlaceholder(buf)) {
+      console.error(`[verify-dists] ${p.name} ${f} appears to be a placeholder`);
+      ok = false;
+      continue;
+    }
+    if (p.name === '@slatecss/core' && f === 'index.css' && p.mustContainCss) {
+      const s = buf.toString('utf8');
+      if (!p.mustContainCss.every(token => s.includes(token))) {
+        console.error('[verify-dists] @slatecss/core index.css lacks expected tokens (:root/--)');
+        ok = false;
+      }
+    }
   }
 }
-if (!ok) {
-  console.error('[verify-dists] One or more packages are missing required artifacts.');
-  process.exit(1);
-} else {
-  console.log('[verify-dists] All package artifacts present.');
-}
+if (!ok) { process.exit(1); }
+console.log('[verify-dists] All artifacts present and non-placeholder.');

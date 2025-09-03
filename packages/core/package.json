@@ -9,5 +9,11 @@
   "files": [
     "dist",
     "src"
-  ]
+  ],
+  "scripts": {
+    "build": "node scripts/build-css.mjs"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
 }
