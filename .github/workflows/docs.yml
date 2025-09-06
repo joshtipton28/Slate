@@ -1,7 +1,8 @@
 name: Docs
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -86,6 +87,7 @@ jobs:
 
       - name: Diagnostics summary
         if: always()
+        continue-on-error: true
         run: node scripts/docs-diagnose.mjs
 
       - uses: actions/upload-pages-artifact@v3
