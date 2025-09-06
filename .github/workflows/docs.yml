@@ -39,20 +39,21 @@ jobs:
         run: |
           set -euxo pipefail
           if command -v pnpm >/dev/null 2>&1; then
-            if [ -f pnpm-lock.yaml ]; then
-              pnpm install --frozen-lockfile
-            else
-              pnpm install
-            fi
+            if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install; fi
           else
-            if [ -f package-lock.json ]; then
-              npm ci
-            else
-              npm install
-            fi
+            if [ -f package-lock.json ]; then npm ci; else npm install; fi
           fi
 
-      - name: Check Astro install
+          # Fallback: explicitly install astro/sass if not present
+          node -e "console.log(!!(require('./package.json').devDependencies||{}).astro)"
+          if ! [ -x node_modules/.bin/astro ]; then
+            echo 'astro not found, installing locally...'
+            (command -v pnpm >/dev/null 2>&1 && pnpm add -D astro@^4.12.2 sass@^1.77.0) || npm i -D astro@^4.12.2 sass@^1.77.0
+          fi
+
+          ls -lah node_modules/.bin || true
+
+        - name: Check Astro install
         working-directory: sites/docs
         run: |
           node -e "console.log('has astro in devDependencies?', require('./package.json').devDependencies?.astro)"
@@ -62,17 +63,13 @@ jobs:
 
       - name: Build (sites/docs)
         working-directory: sites/docs
-        env:
-          NODE_ENV: production
+        env: { NODE_ENV: production }
         run: |
           set -euxo pipefail
-          if command -v pnpm >/dev/null 2>&1; then
-            pnpm run build -- --verbose
-          else
-            npm run build -- --verbose
-          fi
+          if command -v pnpm >/dev/null 2>&1; then pnpm run build -- --verbose; else npm run build -- --verbose; fi
 
       - name: Inspect dist
+
         run: |
           echo '--- dist listing ---'
           ls -lah sites/docs/dist
