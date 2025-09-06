@@ -10,8 +10,8 @@ window.addEventListener("DOMContentLoaded", () => {
       const el = document.getElementById(id)!;
       const overlay = document.querySelector<HTMLElement>(".modal-overlay");
       openModal(el as HTMLElement);
-      overlay?.setAttribute("open", "");
-      overlay?.addEventListener("click", () => { closeModal(el as HTMLElement); overlay?.removeAttribute("open"); }, { once: true });
+      overlay?.setAttribute("open","");
+      overlay?.addEventListener("click", () => { closeModal(el as HTMLElement); overlay?.removeAttribute("open"); }, { once:true });
     });
   });
   document.querySelectorAll("[data-close-modal]").forEach(btn => {
