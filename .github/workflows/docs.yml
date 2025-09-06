@@ -22,24 +22,27 @@ jobs:
       - working-directory: sites/docs
         run: pnpm install || npm install
       - working-directory: sites/docs
-        run: pnpm run build || npm run build || true
+        run: pnpm run build || npm run build
+        continue-on-error: true
       - name: Inspect dist
         run: |
           echo '--- dist listing ---'
-          ls -lah sites/docs/dist || true
+          ls -lah sites/docs/dist
           echo '--- index.html (first 60 lines) ---'
-          head -n 60 sites/docs/dist/index.html || true
+          head -n 60 sites/docs/dist/index.html
+        continue-on-error: true
       - name: "Guard: dist must not be placeholder"
         run: |
           test -f sites/docs/dist/index.html
           if grep -qi 'placeholder' sites/docs/dist/index.html; then
             echo 'Placeholder detected in index.html'; exit 1;
           fi
-          BYTES=$(wc -c < sites/docs/dist/index.html || echo 0)
+          BYTES=$(wc -c < sites/docs/dist/index.html)
           if [ "$BYTES" -lt 500 ]; then
             echo 'index.html suspiciously small ('$BYTES' bytes)'; exit 1;
           fi
       - run: node scripts/docs-diagnose.mjs
+        if: always()
       - uses: actions/upload-pages-artifact@v3
         with: { path: "sites/docs/dist" }
   deploy:
