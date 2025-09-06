@@ -26,37 +26,52 @@ jobs:
       # Prefer pnpm; fall back to npm
       - run: corepack enable || true
       - run: corepack prepare pnpm@10.5.2 --activate || true
+
       - name: Print versions
         run: |
           node -v
           npm -v
           pnpm -v || true
-          npx astro --version || true
 
-      - name: Install (sites/docs)
+      - name: Install (sites/docs) — lockfile aware
         working-directory: sites/docs
         run: |
+          set -euxo pipefail
           if command -v pnpm >/dev/null 2>&1; then
-            pnpm install --frozen-lockfile
+            if [ -f pnpm-lock.yaml ]; then
+              pnpm install --frozen-lockfile
+            else
+              pnpm install
+            fi
           else
-            npm ci
+            if [ -f package-lock.json ]; then
+              npm ci
+            else
+              npm install
+            fi
           fi
 
-      - name: Build (sites/docs)
+      - name: Build (sites/docs) — verbose Astro
         working-directory: sites/docs
+        env:
+          # make Astro logs chattier
+          NODE_ENV: production
         run: |
+          set -euxo pipefail
           if command -v pnpm >/dev/null 2>&1; then
-            pnpm run build
+            pnpm exec astro --version
+            pnpm exec astro build --verbose
           else
-            npm run build
+            npx astro --version
+            npx astro build --verbose
           fi
 
       - name: Inspect dist
         run: |
           echo '--- dist listing ---'
           ls -lah sites/docs/dist
-          echo '--- index.html (first 60 lines) ---'
-          head -n 60 sites/docs/dist/index.html || true
+          echo '--- index.html (first 80 lines) ---'
+          head -n 80 sites/docs/dist/index.html || true
 
       - name: "Guard: dist must not be placeholder"
         run: |
