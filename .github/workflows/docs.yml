@@ -52,19 +52,24 @@ jobs:
             fi
           fi
 
-      - name: Build (sites/docs) — verbose Astro
+      - name: Check Astro install
+        working-directory: sites/docs
+        run: |
+          node -e "console.log('has astro in devDependencies?', require('./package.json').devDependencies?.astro)"
+          pnpm ls astro || npm ls astro || true
+          ls -lah node_modules/.bin || true
+
+
+      - name: Build (sites/docs)
         working-directory: sites/docs
         env:
-          # make Astro logs chattier
           NODE_ENV: production
         run: |
           set -euxo pipefail
           if command -v pnpm >/dev/null 2>&1; then
-            pnpm exec astro --version
-            pnpm exec astro build --verbose
+            pnpm run build -- --verbose
           else
-            npx astro --version
-            npx astro build --verbose
+            npm run build -- --verbose
           fi
 
       - name: Inspect dist
