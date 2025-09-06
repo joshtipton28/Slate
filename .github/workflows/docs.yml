@@ -1,6 +1,8 @@
 name: Docs
 on:
-  push: { branches: [ main ] }
+  push:
+    branches:
+      - main
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,13 +16,30 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
-      - run: corepack enable || true
-      - run: corepack prepare pnpm@10.5.2 --activate || true
-      - run: pnpm -v || echo "pnpm unavailable; fallback to npm"
-      - run: cd sites/docs && (pnpm install || npm install) || true
-      - run: cd sites/docs && (pnpm run build || npm run build || echo "build failed")
-      - name: ensure-dist
-        run: test -d sites/docs/dist || (mkdir -p sites/docs/dist && echo "<!doctype html><meta charset=\"utf-8\"><title>Slate Docs</title><h1>Placeholder</h1>" > sites/docs/dist/index.html)
+      - run: corepack enable
+      - run: corepack prepare pnpm@10.5.2 --activate
+      - run: pnpm -v
+      - working-directory: sites/docs
+        run: pnpm install || npm install
+      - working-directory: sites/docs
+        run: pnpm run build || npm run build || true
+      - name: Inspect dist
+        run: |
+          echo '--- dist listing ---'
+          ls -lah sites/docs/dist || true
+          echo '--- index.html (first 60 lines) ---'
+          head -n 60 sites/docs/dist/index.html || true
+      - name: "Guard: dist must not be placeholder"
+        run: |
+          test -f sites/docs/dist/index.html
+          if grep -qi 'placeholder' sites/docs/dist/index.html; then
+            echo 'Placeholder detected in index.html'; exit 1;
+          fi
+          BYTES=$(wc -c < sites/docs/dist/index.html || echo 0)
+          if [ "$BYTES" -lt 500 ]; then
+            echo 'index.html suspiciously small ('$BYTES' bytes)'; exit 1;
+          fi
+      - run: node scripts/docs-diagnose.mjs
       - uses: actions/upload-pages-artifact@v3
         with: { path: "sites/docs/dist" }
   deploy:

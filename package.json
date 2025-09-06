@@ -14,7 +14,8 @@
     "build:js": "pnpm -F @slatecss/js build || true",
     "size": "size-limit",
     "verify:dist": "node scripts/verify-dists.mjs",
-    "smoke:shims": "node scripts/smoke-shims.mjs"
+    "smoke:shims": "node scripts/smoke-shims.mjs",
+    "docs:diagnose": "node scripts/docs-diagnose.mjs"
   },
   "devDependencies": {
     "size-limit": "^11.0.0"
