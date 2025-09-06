@@ -8,6 +8,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,36 +16,54 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - run: corepack enable
-      - run: corepack prepare pnpm@10.5.2 --activate
-      - run: pnpm -v
-      - working-directory: sites/docs
-        run: pnpm install || npm install
-      - working-directory: sites/docs
-        run: pnpm run build || npm run build
-        continue-on-error: true
+        with:
+          node-version: '20'
+
+      # Prefer pnpm, fall back to npm
+      - run: corepack enable || true
+      - run: corepack prepare pnpm@10.5.2 --activate || true
+      - name: Install (sites/docs)
+        run: |
+          if command -v pnpm >/dev/null 2>&1; then
+            pnpm -C sites/docs install --frozen-lockfile
+          else
+            npm ci --prefix sites/docs
+          fi
+
+      - name: Build (sites/docs)
+        run: |
+          if command -v pnpm >/dev/null 2>&1; then
+            pnpm -C sites/docs run build
+          else
+            npm run --prefix sites/docs build
+          fi
+
       - name: Inspect dist
         run: |
           echo '--- dist listing ---'
           ls -lah sites/docs/dist
           echo '--- index.html (first 60 lines) ---'
           head -n 60 sites/docs/dist/index.html
-        continue-on-error: true
-      - name: "Guard: dist must not be placeholder"
+
+      - name: Guard: dist must not be placeholder
         run: |
           test -f sites/docs/dist/index.html
           if grep -qi 'placeholder' sites/docs/dist/index.html; then
             echo 'Placeholder detected in index.html'; exit 1;
           fi
-          BYTES=$(wc -c < sites/docs/dist/index.html)
+          BYTES=$(wc -c < sites/docs/dist/index.html || echo 0)
           if [ "$BYTES" -lt 500 ]; then
-            echo 'index.html suspiciously small ('$BYTES' bytes)'; exit 1;
+            echo "index.html suspiciously small ($BYTES bytes)"; exit 1;
           fi
-      - run: node scripts/docs-diagnose.mjs
+
+      - name: Diagnostics summary
         if: always()
+        run: node scripts/docs-diagnose.mjs
+
       - uses: actions/upload-pages-artifact@v3
-        with: { path: "sites/docs/dist" }
+        with:
+          path: sites/docs/dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
