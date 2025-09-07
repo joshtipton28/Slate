@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build"
+    "build": "astro build",
+    "prebuild": "node scripts/build-vendor.mjs"
   },
   "devDependencies": {
     "astro": "^4.12.2",
