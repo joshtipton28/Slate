@@ -2,7 +2,7 @@
 const { title = 'Slate' } = Astro.props;
 /* Import local, bundled assets so Vite/Astro injects them correctly */
 import '../styles/slate.css';
-import '../scripts/boot.ts';
+import bootUrl from '../scripts/boot.ts?url';
 ---
 <!doctype html>
 <html lang="en">
@@ -18,5 +18,6 @@ import '../scripts/boot.ts';
     <main style="padding:1rem">
       <slot />
     </main>
+    <script type="module" src={bootUrl}></script>
   </body>
 </html>
