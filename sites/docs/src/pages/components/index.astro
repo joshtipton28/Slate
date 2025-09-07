@@ -16,6 +16,6 @@ const items = [
 <Base title="Components">
   <h1>Components</h1>
   <ul>
-    {items.map(([t,href]) => <li><a href={href}>{t}</a></li>)}
+    {items.map(([t,href]) => <li><a href={Astro.url(href)}>{t}</a></li>)}
   </ul>
 </Base>
