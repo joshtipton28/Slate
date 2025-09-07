@@ -1,13 +1,14 @@
 ---
 const { title = 'Slate' } = Astro.props;
+/* Import local, bundled assets so Vite/Astro injects them correctly */
+import '../styles/slate.css';
+import bootUrl from '../scripts/boot.ts?url';
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
-    <link rel="stylesheet" href={Astro.resolve('../styles/slate.css')} />
-    <script type="module" src={Astro.resolve('../scripts/boot.ts')}></script>
   </head>
   <body>
     <header style="display:flex;justify-content:space-between;align-items:center;padding:1rem">
@@ -17,5 +18,6 @@ const { title = 'Slate' } = Astro.props;
     <main style="padding:1rem">
       <slot />
     </main>
+    <script type="module" src={bootUrl}></script>
   </body>
 </html>
