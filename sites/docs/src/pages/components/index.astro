@@ -1,6 +1,10 @@
 ---
-const withBase = (p) => (import.meta.env.BASE_URL || "/").replace(/\/$/, "") + "/" + String(p).replace(/^\//, "");
 import Base from "../../layouts/Base.astro";
+const withBase = (p) => {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const path = ('/' + String(p)).replace(/\/+/, '/');
+  return base + path;
+};
 const items = [
   ["Buttons","/components/button"],
   ["Notices","/components/notice"],

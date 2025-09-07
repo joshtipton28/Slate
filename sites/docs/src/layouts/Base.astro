@@ -1,13 +1,13 @@
 ---
-import '../scripts/boot.ts';
-import '../styles/slate.css';
-const { title = "Slate" } = Astro.props;
+const { title = 'Slate' } = Astro.props;
 ---
-
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
+    <link rel="stylesheet" href={Astro.resolve('../styles/slate.css')} />
+    <script type="module" src={Astro.resolve('../scripts/boot.ts')}></script>
   </head>
   <body>
     <header style="display:flex;justify-content:space-between;align-items:center;padding:1rem">

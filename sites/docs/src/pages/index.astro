@@ -1,11 +1,19 @@
 ---
-const withBase = (p) => (import.meta.env.BASE_URL || "/").replace(/\/$/, "") + "/" + String(p).replace(/^\//, "");
 import Base from "../layouts/Base.astro";
+const withBase = (p) => {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const path = ('/' + String(p)).replace(/\/+/, '/');
+  return base + path;
+};
 ---
 <Base title="Slate">
   <h1>Slate</h1>
   <p>Lightweight, token-driven framework.</p>
-  <p><a href={withBase('/playground')}>Playground</a> · <a href={withBase('/tokens')}>Tokens</a></p>
+  <p>
+    <a href={withBase('/playground')}>Playground</a>
+    &nbsp;·&nbsp;
+    <a href={withBase('/tokens')}>Tokens</a>
+  </p>
   <p><a href={withBase('/components')}>Components</a></p>
   <p><a href={withBase('/migration/foundation-table')}>Migration: Foundation → Slate</a></p>
 </Base>
