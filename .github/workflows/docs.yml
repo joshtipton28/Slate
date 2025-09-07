@@ -41,13 +41,8 @@ jobs:
           # Ensure local astro binary exists
           npx --yes astro --version
 
-      - name: Build (sites/docs)
-        working-directory: sites/docs
-        env:
-          NODE_ENV: production
-        run: |
-          set -euxo pipefail
-          npx --yes astro build --verbose
+      - name: Build docs (prebuild + build)
+        run: npm run docs:build
 
       - name: Inspect dist
         run: |
