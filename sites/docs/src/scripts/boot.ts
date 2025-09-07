@@ -3,23 +3,21 @@ import { initStack } from "../../../../packages/js/src/stack";
 import { open as openModal, close as closeModal } from "../../../../packages/js/src/modal";
 import { initThemeToggle } from "../components/ThemeToggle.ts";
 
-window.addEventListener('DOMContentLoaded', () => {
-  // Tabs / Stack (demos)
-  document.querySelectorAll<HTMLElement>(".tabs")?.forEach(initTabs);
-  document.querySelectorAll<HTMLElement>(".stack")?.forEach(initStack);
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll<HTMLElement>(".tabs").forEach(initTabs);
+  document.querySelectorAll<HTMLElement>(".stack").forEach(initStack);
 
-  // Modal demo
-  document.querySelectorAll<HTMLElement>("[data-open-modal]")?.forEach(btn => {
+  document.querySelectorAll<HTMLElement>("[data-open-modal]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-open-modal")!;
-      const el = document.getElementById(id)!;
+      const el = document.getElementById(id)! as HTMLElement;
       const overlay = document.querySelector<HTMLElement>(".modal-overlay");
-      openModal(el as HTMLElement);
+      openModal(el);
       overlay?.setAttribute("open", "");
-      overlay?.addEventListener("click", () => { closeModal(el as HTMLElement); overlay?.removeAttribute("open"); }, { once: true });
+      overlay?.addEventListener("click", () => { closeModal(el); overlay.removeAttribute("open"); }, { once: true });
     });
   });
-  document.querySelectorAll("[data-close-modal]")?.forEach(btn => {
+  document.querySelectorAll<HTMLElement>("[data-close-modal]").forEach(btn => {
     btn.addEventListener("click", () => {
       const el = (btn as HTMLElement).closest<HTMLElement>(".modal")!;
       closeModal(el);
@@ -27,7 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Theme toggle
   const btn = document.querySelector<HTMLButtonElement>('#theme-toggle');
   if (btn) initThemeToggle(btn);
 });
