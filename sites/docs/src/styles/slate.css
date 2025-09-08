@@ -354,6 +354,11 @@ table.table {
   padding: 0.75rem 1.25rem;
 }
 
+.btn.btn--secondary {
+  background: var(--sl-color-secondary);
+  color: var(--sl-color-text);
+}
+
 /* components entry */
 
 .sr-only {
