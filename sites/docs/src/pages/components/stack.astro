@@ -1,13 +1,13 @@
 ---
 import Base from "../../layouts/Base.astro";
 ---
-<Base title="Stack">
-  <details class="stack__item" open>
-    <summary class="stack__header"><button aria-expanded="true">Section 1</button></summary>
-    <div class="stack__panel">Content 1</div>
-  </details>
-  <details class="stack__item">
-    <summary class="stack__header"><button aria-expanded="false">Section 2</button></summary>
-    <div class="stack__panel">Content 2</div>
-  </details>
+<Base title="Stack (Accordion)">
+  <div class="container">
+    <div class="stack" data-accordion>
+      <button class="stack__header">Section A</button>
+      <div class="stack__panel">A content</div>
+      <button class="stack__header">Section B</button>
+      <div class="stack__panel">B content</div>
+    </div>
+  </div>
 </Base>

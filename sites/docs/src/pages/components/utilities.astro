@@ -2,7 +2,11 @@
 import Base from "../../layouts/Base.astro";
 ---
 <Base title="Utilities">
-  <div class="u-p-4 card">Padding .u-p-4</div>
-  <div class="u-m-4 notice">Margin .u-m-4</div>
-  <div class="u-flex"><div class="card u-p-2">Flex 1</div><div class="card u-p-2">Flex 2</div></div>
+  <div class="container stack">
+    <div class="demo-card u-flex u-items-center u-gap-2">
+      <span>Flex row with gaps</span>
+      <button class="btn btn--ghost">Ghost</button>
+    </div>
+    <div class="demo-card u-p-4">Padding utility (.u-p-4)</div>
+  </div>
 </Base>

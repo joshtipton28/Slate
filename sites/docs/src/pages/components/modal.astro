@@ -2,13 +2,15 @@
 import Base from "../../layouts/Base.astro";
 ---
 <Base title="Modal">
-  <button class="btn" data-open-modal="demo-modal">Open modal</button>
-  <div class="modal-overlay"></div>
-  <div id="demo-modal" class="modal" role="dialog" aria-modal="true">
-    <header class="card__header">Modal</header>
-    <div class="card__body">Hello!</div>
-    <footer class="card__footer">
-      <button class="btn btn--ghost" data-close-modal>Close</button>
-    </footer>
+  <div class="container">
+    <button class="btn" data-open-modal="demo-modal">Open modal</button>
+    <div class="modal-overlay"></div>
+    <div id="demo-modal" class="modal" aria-modal="true" role="dialog" hidden>
+      <div class="modal__dialog">
+        <header class="modal__header">Modal</header>
+        <div class="modal__body">Hello from Slate modal.</div>
+        <footer class="modal__footer"><button class="btn" data-close-modal>Close</button></footer>
+      </div>
+    </div>
   </div>
 </Base>

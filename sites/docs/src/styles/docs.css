@@ -1,0 +1,10 @@
+:root {
+  --page-max: 72rem;
+  --gap-1: .5rem; --gap-2: 1rem; --gap-3: 1.5rem; --gap-4: 2rem;
+}
+.container { max-width: var(--page-max); margin-inline: auto; padding: var(--gap-4) var(--gap-2); }
+.stack { display:flex; flex-direction:column; gap: var(--gap-2); }
+.stack--lg { gap: var(--gap-3); }
+.grid { display:grid; gap: var(--gap-2); grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.hr { height:1px; background: color-mix(in oklch, var(--sl-color-text), transparent 85%); margin: var(--gap-3) 0; }
+.demo-card { padding: var(--gap-2); border-radius: var(--sl-radius-lg); background: var(--sl-color-overlay); box-shadow: var(--sl-shadow-1); }

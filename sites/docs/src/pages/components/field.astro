@@ -1,15 +1,16 @@
 ---
 import Base from "../../layouts/Base.astro";
 ---
-<Base title="Field">
-  <div class="field">
-    <label class="field__label" for="email">Email</label>
-    <input class="field__input" id="email" type="email" placeholder="you@example.com" />
-    <small class="field__help">We’ll never share your email.</small>
-  </div>
-  <div class="field field--error">
-    <label class="field__label" for="name">Name</label>
-    <input class="field__input" id="name" />
-    <small class="field__help">Name is required.</small>
+<Base title="Fields">
+  <div class="container grid">
+    <div class="demo-card">
+      <label class="field__label" for="email">Email</label>
+      <input class="field__input" id="email" type="email" placeholder="you@example.com" />
+      <div class="field__help">We never share your email.</div>
+    </div>
+    <div class="demo-card">
+      <label class="field__label" for="sel">Select</label>
+      <select class="field__input" id="sel"><option>One</option><option>Two</option></select>
+    </div>
   </div>
 </Base>

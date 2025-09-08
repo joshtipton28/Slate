@@ -1,10 +1,9 @@
 ---
 import Base from "../../layouts/Base.astro";
 ---
-<Base title="Card">
-  <article class="card" style="max-width: 480px;">
-    <header class="card__header">Header</header>
-    <div class="card__body">Body</div>
-    <footer class="card__footer">Footer</footer>
-  </article>
+<Base title="Cards">
+  <div class="container grid">
+    <article class="card"><header class="card__header">Header</header><div class="card__body">Body</div><footer class="card__footer">Footer</footer></article>
+    <article class="card"><div class="card__body">Minimal card</div></article>
+  </div>
 </Base>
