@@ -4,10 +4,14 @@ import Base from "../../layouts/Base.astro";
 <Base title="Stack (Accordion)">
   <div class="container">
     <div class="stack" data-accordion>
-      <button class="stack__header">Section A</button>
-      <div class="stack__panel">A content</div>
-      <button class="stack__header">Section B</button>
-      <div class="stack__panel">B content</div>
+      <div class="stack__item">
+        <button class="stack__header" aria-controls="sect-a" aria-expanded="true">Section A</button>
+        <div id="sect-a" class="stack__panel">A content</div>
+      </div>
+      <div class="stack__item">
+        <button class="stack__header" aria-controls="sect-b" aria-expanded="false">Section B</button>
+        <div id="sect-b" class="stack__panel" hidden>B content</div>
+      </div>
     </div>
   </div>
 </Base>

@@ -3,11 +3,13 @@ import Base from "../../layouts/Base.astro";
 ---
 <Base title="Tabs">
   <div class="container">
-    <div class="tabs" role="tablist" aria-label="Sample tabs">
-      <button role="tab" aria-controls="t1" aria-selected="true">Alpha</button>
-      <button role="tab" aria-controls="t2">Beta</button>
+    <div class="tabs" data-tabs>
+      <div class="tabs__list" role="tablist" aria-label="Sample tabs">
+        <button class="tabs__tab" id="tab-a" role="tab" aria-controls="panel-a" aria-selected="true">Alpha</button>
+        <button class="tabs__tab" id="tab-b" role="tab" aria-controls="panel-b" aria-selected="false" tabindex="-1">Beta</button>
+      </div>
+      <div id="panel-a" class="tabs__panel" role="tabpanel" aria-labelledby="tab-a">Alpha content</div>
+      <div id="panel-b" class="tabs__panel" role="tabpanel" aria-labelledby="tab-b" hidden>Beta content</div>
     </div>
-    <div id="t1" class="tabs__panel">Alpha content</div>
-    <div id="t2" class="tabs__panel" hidden>Beta content</div>
   </div>
 </Base>
