@@ -31,6 +31,17 @@ h3 {
   --color-text:#0f1220;
 }
 
+:root {
+  --sl-color-text: var(--color-text);
+  --sl-color-secondary: oklch(96% 0.02 250);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, :root[data-theme=dark] {
+    --sl-color-text: var(--color-text);
+    --sl-color-secondary: oklch(24% 0.02 250);
+  }
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg:#0e121b;
@@ -356,7 +367,7 @@ table.table {
 
 .btn.btn--secondary {
   background: var(--sl-color-secondary);
-  color: var(--sl-color-text);
+  color: var(--sl-color-text, var(--color-text));
 }
 
 /* components entry */
