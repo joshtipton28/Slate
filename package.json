@@ -18,9 +18,12 @@
     "docs:diagnose": "node scripts/docs-diagnose.mjs",
     "docs:selfcheck": "node scripts/docs-selfcheck.mjs",
     "docs:build": "npm --prefix sites/docs run prebuild && npm --prefix sites/docs run build",
-    "docs:verify": "node scripts/docs-verify.mjs"
+    "docs:verify": "node scripts/docs-verify.mjs",
+    "test:ui:serve": "PORT=4173 node scripts/serve-docs.mjs",
+    "test:ui": "npm run docs:build && (npm run -s test:ui:serve & SERVER_PID=$!; BASE_URL=http://localhost:4173/Slate ./node_modules/.bin/playwright test tests/ui --project=chromium --reporter=line; EXIT=$?; kill $SERVER_PID; exit $EXIT)"
   },
   "devDependencies": {
-    "size-limit": "^11.0.0"
+    "size-limit": "^11.0.0",
+    "@playwright/test": "^1.47.0"
   }
 }

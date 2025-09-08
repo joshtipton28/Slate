@@ -1,0 +1,33 @@
+name: UI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+permissions:
+  contents: read
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install root deps (no browser download)
+        run: npm ci || npm install
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: Install docs deps
+        working-directory: sites/docs
+        run: npm ci || npm install
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: Install Playwright browsers (Chromium with deps)
+        run: ./node_modules/.bin/playwright install --with-deps chromium
+      - name: Build docs
+        run: npm run docs:build
+      - name: Run UI tests (Chromium)
+        env:
+          BASE_URL: http://localhost:4173/Slate
+        run: npm run test:ui
